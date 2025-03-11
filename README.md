@@ -117,7 +117,7 @@ uvicorn main:app --reload
 
 ```sh
 cd ../
-cd rabot-ui
+cd ragbot-ui
 npm install
 npm start
 ```

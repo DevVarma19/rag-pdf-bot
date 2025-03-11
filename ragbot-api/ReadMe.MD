@@ -1,9 +1,9 @@
 ---
 
-# RAG-PDF-CHATBOT
+# RAG-PDF-API
 
 ## 📌 Overview  
-The **RAG-PDF-CHATBOT** enables users to upload PDF documents and ask questions, receiving intelligent responses based on the document content. It utilizes **Retrieval-Augmented Generation (RAG)** with **LLMs, embeddings, and a vector database** for efficient document-based querying.
+The **RAG-PDF-API** enables users to upload PDF documents and ask questions, receiving intelligent responses based on the document content. It utilizes **Retrieval-Augmented Generation (RAG)** with **LLMs, embeddings, and a vector database** for efficient document-based querying.
 
 ### 🔹 Key Technologies:
 - **LLM & Embeddings**: OpenAI APIs (GPT-4 & `text-embedding-ada-002`)
@@ -91,14 +91,21 @@ After querying the **RAG-PDF-API**, response evaluation is crucial. **LlamaIndex
 
 ---
 
+## 📌 Pending Improvements
+
+- [ ] **Implement Namespace Separation**
+- [ ] **Implement Cloud-Based File Storage**
+- [ ] **Relevancy Check (Optional)**
+
+---
+
 ## 🚀 Getting Started
 
 ### **1️⃣ Clone the Repository**
 
 ```sh
-git clone https://github.com/your-repo/rag-pdf-bot.git
-cd rag-pdf-bot
-cd ragbot-api
+git clone https://github.com/your-repo/rag-pdf-api.git
+cd rag-pdf-api
 ```
 
 ### **2️⃣ Install Dependencies**
@@ -116,8 +123,7 @@ uvicorn main:app --reload
 ### **4️⃣ Start the Frontend**
 
 ```sh
-cd ../
-cd rabot-ui
+cd frontend
 npm install
 npm start
 ```
@@ -133,3 +139,5 @@ Contributions are welcome! Feel free to open issues or submit pull requests.
 ## 📜 License
 
 MIT License. See `LICENSE` for details.
+
+---

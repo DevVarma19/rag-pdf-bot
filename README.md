@@ -83,6 +83,12 @@ After querying the **RAG-PDF-API**, response evaluation is crucial. **LlamaIndex
 - Use **LlamaIndex's `RelevancyEvaluator`** to assess whether the generated responses are **relevant** based on the retrieved document context.
 - No labeled datasets are required for this type of evaluation.
 
+### Reference Screenshots
+![image](https://github.com/user-attachments/assets/721a80f1-4a70-4059-ac03-bb0bb452f45d)
+![image](https://github.com/user-attachments/assets/c68e0105-3bf9-48e4-a617-e6cf9acddc86)
+![image](https://github.com/user-attachments/assets/e33d6f9f-3d95-46fa-8329-fd68437ddbe8)
+
+
 ### 🔗 **Useful Links**
 
 - [LlamaIndex Relevance Evaluation Guide](https://docs.llamaindex.ai/en/module_guides/evaluating/usage_pattern.html)

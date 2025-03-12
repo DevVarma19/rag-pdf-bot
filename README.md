@@ -119,7 +119,7 @@ uvicorn main:app --reload
 cd ../
 cd ragbot-ui
 npm install
-npm start
+vite start
 ```
 
 ---

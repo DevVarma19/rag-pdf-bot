@@ -1,13 +1,15 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
-import { User, Bot } from 'lucide-react';
+import { User, Bot, BookOpen } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import ReferenceModal from './ReferenceModal';
 
 export interface Message {
   id: string;
   content: string;
   role: 'user' | 'assistant';
   timestamp: Date;
+  referenceChunks?: string[];
 }
 
 interface MessageItemProps {
@@ -17,6 +19,7 @@ interface MessageItemProps {
 
 const MessageItem: React.FC<MessageItemProps> = ({ message, isLatest }) => {
   const isUser = message.role === 'user';
+  const [showReferences, setShowReferences] = useState(false);
   
   return (
     <div 
@@ -42,9 +45,31 @@ const MessageItem: React.FC<MessageItemProps> = ({ message, isLatest }) => {
         <div className="flex-grow min-w-0">
           <div className="prose prose-slate dark:prose-invert max-w-none break-words">
             <p className="whitespace-pre-line">{message.content}</p>
+            
+            {!isUser && message.referenceChunks && message.referenceChunks.length > 0 && (
+              <div className="mt-3 flex">
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="text-xs flex items-center gap-1.5 rounded-full border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm hover:bg-slate-50 dark:hover:bg-slate-700"
+                  onClick={() => setShowReferences(true)}
+                >
+                  <BookOpen size={14} />
+                  <span>View Sources ({message.referenceChunks.length})</span>
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       </div>
+      
+      {!isUser && message.referenceChunks && (
+        <ReferenceModal 
+          isOpen={showReferences} 
+          onClose={() => setShowReferences(false)} 
+          chunks={message.referenceChunks} 
+        />
+      )}
     </div>
   );
 };

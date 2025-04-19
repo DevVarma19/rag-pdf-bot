@@ -34,6 +34,6 @@ CHUNK_SIZE = 1024
 OVERLAP = 100
 
 # FastAPI Settings
-ALLOWED_ORIGINS = ["http://localhost:8080"]  # Update with frontend deployment URL
+ALLOWED_ORIGINS = ["http://localhost:3000"]  # Update with frontend deployment URL
 # Frontend URL for CORS
-FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:8080")  # Default to local frontend
+FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:3000")  # Default to local frontend

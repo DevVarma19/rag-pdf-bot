@@ -11,6 +11,8 @@ class FileUploadResponse(BaseModel):
 class QueryRequest(BaseModel):
     query: str
     top_k: Optional[int] = 5
+    doc_id: Optional[str] = None
+    chunk_id: Optional[int] = None
 
 # Response Model for LLM Query Response
 class QueryResponse(BaseModel):

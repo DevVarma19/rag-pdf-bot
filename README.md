@@ -145,13 +145,13 @@ npm run dev
 ## 📷 Demo Preview
 
 Example screenshots show:
-- Uploaded document
-- User question
-- AI-generated answer with citation
-- Ability to click/trace source
-
----
-
-## 📜 License
-
-MIT License – See `LICENSE`.
+- Home screen:
+<img width="1469" alt="image" src="https://github.com/user-attachments/assets/17f48bc1-619e-46b7-9c06-8f48ba05b28f" />
+- Uploaded document:
+<img width="1469" alt="image" src="https://github.com/user-attachments/assets/a809f55f-e9ef-4db0-a3cd-5bd4bbd39c6c" />
+- Question & AI-generated answer with citation:
+<img width="1469" alt="image" src="https://github.com/user-attachments/assets/e7e3fef6-2c81-4db6-bfd8-06a2505c26d7" />
+- Ability to click/trace source:
+<img width="1469" alt="image" src="https://github.com/user-attachments/assets/82c9ec8c-16cc-4bb1-9706-8c1e47aeb9b0" />
+- Asking question out of context:
+<img width="1469" alt="image" src="https://github.com/user-attachments/assets/5755ae36-d41b-4199-8b27-1c6cdaaf049a" />

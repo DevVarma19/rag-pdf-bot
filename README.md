@@ -1,5 +1,3 @@
-# RAG-PDF-CHATBOT
-
 ## 📌 Overview  
 The **RAG-PDF-CHATBOT** enables users to upload PDF documents and ask questions, receiving intelligent responses based on document content. It uses **Retrieval-Augmented Generation (RAG)** with **LLMs, embeddings, and a vector database** to enable **context-aware and verifiable** Q&A.
 
@@ -150,7 +148,7 @@ Example screenshots show:
 - Uploaded document:
 <img width="1469" alt="image" src="https://github.com/user-attachments/assets/a809f55f-e9ef-4db0-a3cd-5bd4bbd39c6c" />
 - Question & AI-generated answer with citation:
-<img width="1469" alt="image" src="https://github.com/user-attachments/assets/e7e3fef6-2c81-4db6-bfd8-06a2505c26d7" />
+<img width="1469" alt="image" src="https://github.com/user-attachments/assets/559e278a-ef60-4a53-ba93-953c8e04b75f" />
 - Ability to click/trace source:
 <img width="1469" alt="image" src="https://github.com/user-attachments/assets/82c9ec8c-16cc-4bb1-9706-8c1e47aeb9b0" />
 - Asking question out of context:

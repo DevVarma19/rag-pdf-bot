@@ -1,12 +1,10 @@
----
-
 # RAG-PDF-CHATBOT
 
 ## 📌 Overview  
-The **RAG-PDF-CHATBOT** enables users to upload PDF documents and ask questions, receiving intelligent responses based on the document content. It utilizes **Retrieval-Augmented Generation (RAG)** with **LLMs, embeddings, and a vector database** for efficient document-based querying.
+The **RAG-PDF-CHATBOT** enables users to upload PDF documents and ask questions, receiving intelligent responses based on document content. It uses **Retrieval-Augmented Generation (RAG)** with **LLMs, embeddings, and a vector database** to enable **context-aware and verifiable** Q&A.
 
 ### 🔹 Key Technologies:
-- **LLM & Embeddings**: OpenAI APIs (GPT-4 & `text-embedding-ada-002`)
+- **LLM & Embeddings**: OpenAI APIs (`gpt-4`, `text-embedding-ada-002`)
 - **Vector Storage**: Pinecone
 - **Backend**: FastAPI (Python)
 - **Frontend**: React
@@ -14,86 +12,101 @@ The **RAG-PDF-CHATBOT** enables users to upload PDF documents and ask questions,
 
 ---
 
+## 🧠 Trustworthy AI: Why It Matters
+
+This chatbot is designed not just for accurate answers, but **trustworthy ones**. We ensure **transparency, traceability, and user verifiability** through:
+
+- **Citations for every answer** from retrieved document chunks.
+- **Fact-checking against external sources** (e.g., Wikipedia, ArXiv).
+- **Bias mitigation** using diverse embedding strategies.
+- **User-centric explainability** to support informed decision-making.
+
+---
+
 ## 🏗️ System Architecture
 
 ### **High-Level Architecture Flow**
 
-1. **User Interaction**
+1. **User Interaction**  
+   Upload PDFs and submit questions via the **React UI**.  
 
-   - Users upload PDFs and submit queries via the **React frontend**.
-   - The system processes queries using OpenAI's **LLM and stored vector embeddings**.
+2. **Backend (FastAPI)**  
+   Routes requests for **PDF processing**, **embedding**, **retrieval**, and **LLM generation**.  
 
-2. **Backend (FastAPI)**
+3. **PDF Processing**  
+   - Extracts text using **PyPDF2**
+   - Chunks content for semantic embedding
+   - Cleans and normalizes document data
 
-   - Manages API endpoints for PDF upload, query retrieval, and LLM interaction.
-   - Routes requests to different services (**document processing, vector storage, and query handling**).
+4. **Embedding Model**  
+   Converts chunks into **vector embeddings** via OpenAI and stores them in Pinecone.
 
-3. **PDF Processing Module**
+5. **Vector Database (Pinecone)**  
+   Enables **semantic search** over embedded chunks for fast, relevant retrieval.
 
-   - Extracts text from PDFs using **PyPDF2**.
-   - Chunks text into **meaningful sections** for efficient retrieval.
-   - Cleans and preprocesses extracted text.
+6. **Retrieval + Context Builder**  
+   Matches queries to document vectors, builds **context window** for GPT-4.
 
-4. **Embedding Model (OpenAI)**
+7. **LLM Response Generation**  
+   GPT-4 generates answers using document context, with **citation snippets included**.
 
-   - Converts text chunks into vector embeddings using `text-embedding-ada-002`.
-   - Stores embeddings in **Pinecone** for quick retrieval.
-
-5. **Vector Database (Pinecone)**
-
-   - Stores document chunks and corresponding **vector embeddings**.
-   - Enables **fast similarity search** for retrieving relevant text sections.
-
-6. **Retrieval & Context Builder**
-
-   - Converts user queries into **vector embeddings**.
-   - Searches Pinecone for **relevant document chunks**.
-   - Constructs context from retrieved text for **LLM response generation**.
-
-7. **LLM**
-
-   - Processes user queries along with the **retrieved document context**.
-   - Generates a well-structured response based on the available context.
-
-8. **Response to User**
-   - The chatbot sends the **final response** back to the frontend.
-   - The response is displayed in the chat interface.
+8. **Frontend Display**  
+   User sees AI answer **with traceable citations**, improving transparency.
 
 ---
 
 ## 🔄 Data Flow Process
 
-1️⃣ **User Uploads a PDF** → The file is sent to the backend for processing.  
-2️⃣ **Text Extraction & Chunking** → Extracted text is cleaned and divided into smaller **chunks**.  
-3️⃣ **Embedding Generation** → Each chunk is converted into a **vector embedding** using OpenAI.  
-4️⃣ **Storing in Pinecone** → Vector embeddings are stored for **future retrieval**.  
-5️⃣ **User Submits Query** → The system retrieves **relevant document chunks** from Pinecone.  
-6️⃣ **Context Building** → The best-matching chunks are formatted as input to GPT-4.  
-7️⃣ **Response Generation** → GPT generates an answer based on the **retrieved context**.  
-8️⃣ **Response Display** → The response is sent back to the frontend and shown to the user.
+1️⃣ **PDF Upload**  
+User uploads a PDF document through the chat interface.
+
+2️⃣ **Text Extraction & Chunking**  
+The system extracts raw text from the PDF, cleans it, and segments it into coherent, meaningful chunks for semantic indexing.
+
+3️⃣ **Embedding Generation**  
+Each chunk is transformed into a dense vector embedding using `text-embedding-ada-002`, capturing its contextual meaning.
+
+4️⃣ **Vector Storage**  
+Embeddings are stored in the **Pinecone** vector database, enabling fast and accurate similarity search during queries.
+
+5️⃣ **User Query Submission**  
+User enters a natural-language question through the chat interface.
+
+6️⃣ **Semantic Retrieval & Context Assembly**  
+The system retrieves the most relevant document chunks based on the semantic similarity of the query and compiles them into a context window.
+
+7️⃣ **LLM Response Generation**  
+GPT-4 processes the user query along with the retrieved context to generate a coherent, context-aware, and citation-backed response.
+
+8️⃣ **Answer Display with Citations**  
+The chatbot displays the response along with **directly linked document snippets**, allowing users to verify and trust the answer.
 
 ---
 
-## 🛠️ Evaluation of Responses
+## 🔍 Explainability & Trustworthiness Features
 
-After querying the **RAG-PDF-API**, response evaluation is crucial. **LlamaIndex** provides several evaluation methods to ensure response quality.
+| Feature                     | Purpose                                                  |
+|----------------------------|----------------------------------------------------------|
+| 🔗 **Citations in Response**   | Every answer includes the source snippet for traceability |
+| 🕵️ **Fact Checking**         | Optional cross-verification using external sources        |
+| 🧮 **Bias Detection**         | Reduces embedding/model bias via diversified techniques   |
+| 🧪 **Evaluation Benchmarks**  | System tested using vague, ambiguous, and edge-case queries |
+| 🛡️ **Uncertainty Handling**   | Ambiguity is acknowledged to avoid overconfident replies  |
 
-### **Relevance Evaluation (No Ground Truth Needed)**
+---
 
-- Use **LlamaIndex's `RelevancyEvaluator`** to assess whether the generated responses are **relevant** based on the retrieved document context.
-- No labeled datasets are required for this type of evaluation.
+## 🧪 Evaluation Framework
 
-### Reference Screenshots
-![image](https://github.com/user-attachments/assets/721a80f1-4a70-4059-ac03-bb0bb452f45d)
-![image](https://github.com/user-attachments/assets/c68e0105-3bf9-48e4-a617-e6cf9acddc86)
-![image](https://github.com/user-attachments/assets/e33d6f9f-3d95-46fa-8329-fd68437ddbe8)
+Our evaluation is modeled after **LlamaIndex's Relevance Evaluator** and our custom benchmark:
 
+| Metric                | Description                                                   |
+|-----------------------|---------------------------------------------------------------|
+| ✅ Justification Score | Measures how well the response is grounded in retrieved content |
+| 🔗 Citation Accuracy  | Checks visibility and correctness of cited chunks              |
+| 🔍 Verifiability      | Tests whether users can trace answers back to original PDF     |
+| ⚠️ Edge Case Handling | Evaluates how system reacts to ambiguous/unrelated input       |
 
-### 🔗 **Useful Links**
-
-- [LlamaIndex Relevance Evaluation Guide](https://docs.llamaindex.ai/en/module_guides/evaluating/usage_pattern.html)
-- [LlamaIndex Relevancy Evaluator](https://docs.llamaindex.ai/en/stable/examples/evaluation/relevancy_eval.html)
-- [Evaluating Search with Human Judgment](https://dtunkelang.medium.com/evaluating-search-using-human-judgement-fbb2eeba37d9)
+Each metric is scored on a scale from 0–5 to ensure measurable performance.
 
 ---
 
@@ -101,7 +114,7 @@ After querying the **RAG-PDF-API**, response evaluation is crucial. **LlamaIndex
 
 ### **1️⃣ Clone the Repository**
 
-```sh
+```bash
 git clone https://github.com/your-repo/rag-pdf-bot.git
 cd rag-pdf-bot
 cd ragbot-api
@@ -109,33 +122,36 @@ cd ragbot-api
 
 ### **2️⃣ Install Dependencies**
 
-```sh
+```bash
 pip install -r requirements.txt
 ```
 
-### **3️⃣ Run the Backend**
+### **3️⃣ Start the Backend**
 
-```sh
+```bash
 uvicorn main:app --reload
 ```
 
-### **4️⃣ Start the Frontend**
+### **4️⃣ Run the Frontend**
 
-```sh
-cd ../
-cd ragbot-ui
+```bash
+cd ../ragbot-ui
 npm install
 npm run dev
 ```
 
 ---
 
-## 🎯 Contributing
+## 📷 Demo Preview
 
-Contributions are welcome! Feel free to open issues or submit pull requests.
+Example screenshots show:
+- Uploaded document
+- User question
+- AI-generated answer with citation
+- Ability to click/trace source
 
 ---
 
 ## 📜 License
 
-MIT License. See `LICENSE` for details.
+MIT License – See `LICENSE`.
